@@ -6,9 +6,14 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.pluralsight.model.Ride;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 @Repository("rideRepository")
 public class RideRepositoryImpl implements RideRepository {
+    
+        @Autowired
+        private JdbcTemplate jdbcTemplate;
 
 	@Override
 	public List<Ride> getRides() {

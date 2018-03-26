@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pluralsight.model.Ride;
 import com.pluralsight.service.RideService;
+import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
 public class RideController {
@@ -22,4 +23,9 @@ public class RideController {
 		return rideService.getRides();
 	}
 	
+        @RequestMapping(value = "/ride", method = RequestMethod.PUT)
+        public @ResponseBody Ride createRide(@RequestBody Ride ride) {
+            
+            return null;
+        }
 }
