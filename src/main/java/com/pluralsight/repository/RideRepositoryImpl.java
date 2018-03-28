@@ -6,10 +6,13 @@ import java.util.List;
 import org.springframework.stereotype.Repository;
 
 import com.pluralsight.model.Ride;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.simple.SimpleJdbcInsert;
 
 @Repository("rideRepository")
@@ -20,20 +23,39 @@ public class RideRepositoryImpl implements RideRepository {
 
 	@Override
 	public List<Ride> getRides() {
+            
+/* Static ArrayList method
 		Ride ride = new Ride();
 		ride.setName("Corner Canyon");
 		ride.setDuration(120);
 		List <Ride> rides = new ArrayList<>();
 		rides.add(ride);
+*/
+
+                List<Ride> rides = jdbcTemplate.query("select * from ride", new RowMapper<Ride> (){
+                    @Override
+                    public Ride mapRow(ResultSet rs, int i) throws SQLException {
+                        
+                        Ride ride = new Ride();
+                        ride.setId(rs.getInt("id"));
+                        ride.setName(rs.getString("name"));
+                        ride.setDuration(rs.getInt("duration"));
+                        return ride;
+                    }     
+                });
+                
 		return rides;
+
+
+
 	}
 
         @Override
         public Ride createRide(Ride ride) {
             //#1 jdbc template method
-            //jdbcTemplate.update("insert into ride (name, duration) values (?,?)", ride.getName(), ride.getDuration());
+            jdbcTemplate.update("insert into ride (name, duration) values (?,?)", ride.getName(), ride.getDuration());
         
-            
+/*            
             //#2 simple jdbc insert method
             SimpleJdbcInsert insert = new SimpleJdbcInsert(jdbcTemplate);
             
@@ -53,6 +75,8 @@ public class RideRepositoryImpl implements RideRepository {
             
             Number key = insert.executeAndReturnKey(data);
             
+            System.out.println(key);
+*/            
             return null;
         }	   
 }

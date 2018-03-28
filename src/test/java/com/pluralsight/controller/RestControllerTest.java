@@ -36,8 +36,8 @@ public class RestControllerTest {
             
             Ride ride = new Ride();
            
-            ride.setName("Round Valley Ride");
-            ride.setDuration(35);
+            ride.setName("sillicon Valley Ride");
+            ride.setDuration(68);
             
             restTemplate.put("http://localhost:8080/ride_tracker/ride", ride);
             
