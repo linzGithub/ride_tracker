@@ -25,14 +25,14 @@ public class RideRepositoryImpl implements RideRepository {
     @Override
     public List<Ride> getRides() {
             
-/*  //Static ArrayList method
-    Ride ride = new Ride();
-    ride.setName("Corner Canyon");
-    ride.setDuration(120);
-    List <Ride> rides = new ArrayList<>();
-    rides.add(ride);
+/*      //#1 Static ArrayList method
+        Ride ride = new Ride();
+        ride.setName("Corner Canyon");
+        ride.setDuration(120);
+        List <Ride> rides = new ArrayList<>();
+        rides.add(ride);
 */
-        //jdbcTemplate read all record from DB
+/*        //#2 jdbcTemplate read all record from DB
         List<Ride> rides = jdbcTemplate.query("select * from ride", new RowMapper<Ride> (){
             @Override
             public Ride mapRow(ResultSet rs, int i) throws SQLException {
@@ -44,7 +44,10 @@ public class RideRepositoryImpl implements RideRepository {
                 return ride;
             }     
         });
-    
+*/
+        //#3 jdbcTemplate read all record from DB with RowMapper util
+        List<Ride> rides = jdbcTemplate.query("select * from ride", new RideRowMapper());
+        
         return rides;
     }
 
@@ -83,8 +86,8 @@ public class RideRepositoryImpl implements RideRepository {
     @Override
     public Ride modifyRide(Ride ride) {
         
-        //jdbcTemplate read all record from DB
-        List<Ride> rides = jdbcTemplate.query("select * from ride", new RideRowMapper());
+        //#1 jdbc template method
+        jdbcTemplate.update("insert into ride (name, duration) values (?,?)", ride.getName(), ride.getDuration());
         
         return null;
     }
