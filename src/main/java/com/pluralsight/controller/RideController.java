@@ -28,4 +28,10 @@ public class RideController {
             
             return rideService.createRide(ride);
         }
+        
+        @RequestMapping(value = "/ride", method = RequestMethod.POST)
+        public @ResponseBody Ride modifyRide(@RequestBody Ride ride) {
+            
+            return rideService.modifyRide(ride);
+        }
 }

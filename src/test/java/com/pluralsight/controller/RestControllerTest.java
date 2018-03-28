@@ -41,5 +41,20 @@ public class RestControllerTest {
             
             restTemplate.put("http://localhost:8080/ride_tracker/ride", ride);
             
-        }          
+        }
+        
+        @Test(timeout=3000)
+        public void testModifyRide() {
+            
+            RestTemplate restTemplate = new RestTemplate();
+            
+            Ride ride = new Ride();
+           
+            ride.setName("Half moon Bay Ride");
+            ride.setDuration(68);
+            
+            ride = restTemplate.postForObject("http://localhost:8080/ride_tracker/ride", ride, Ride.class);
+            
+        }
+        
 }

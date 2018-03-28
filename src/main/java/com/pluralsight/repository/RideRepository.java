@@ -10,4 +10,6 @@ public interface RideRepository {
 
     public Ride createRide(Ride ride);
 
+    public Ride modifyRide(Ride ride);
+
 }
