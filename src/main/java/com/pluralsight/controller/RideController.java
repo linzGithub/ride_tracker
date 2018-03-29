@@ -21,11 +21,12 @@ public class RideController {
 	
 	@RequestMapping(value = "/rides", method = RequestMethod.GET)
 	public @ResponseBody List<Ride> getRides() {
+
 		return rideService.getRides();
 	}
 /*	
         @RequestMapping(value = "/ride", method = RequestMethod.PUT)
-        public @ResponseBody Ride createRide(@RequestBody Ride ride) {
+        public @ResponseBody Ride createUpdateRide(@RequestBody Ride ride) {
             
             return rideService.createRide(ride);
         }
@@ -38,6 +39,7 @@ public class RideController {
         
         @RequestMapping(value = "/ride/{id}", method = RequestMethod.GET)
         public @ResponseBody Ride getRide(@PathVariable(value = "id") Integer id) {
+            
             return rideService.getRide(id);
         }
         
@@ -45,6 +47,14 @@ public class RideController {
         public @ResponseBody Ride updateRide(@RequestBody Ride ride) {
             return rideService.updateRide(ride);
         }
-        
+
+        @RequestMapping(value = "/batch", method = RequestMethod.GET)
+        public @ResponseBody Object batch() {
+            
+            rideService.batch();
+            
+            return null;
+        }
+     
         
 }

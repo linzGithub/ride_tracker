@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.pluralsight.model.Ride;
 import com.pluralsight.repository.RideRepository;
+import java.util.ArrayList;
+import java.util.Date;
 
 @Service("rideService")
 public class RideServiceImpl implements RideService {
@@ -39,5 +41,20 @@ public class RideServiceImpl implements RideService {
         return rideRepository.updateRide(ride);
     }
 
-    
+    @Override
+    public void batch() {
+        
+        List<Ride> rides = rideRepository.getRides();
+        
+        List<Object[]> pairs = new ArrayList<>();
+        
+        for (Ride ride : rides) {
+            
+            Object [] tmp = {new Date(), ride.getId()};
+            pairs.add(tmp);
+        }
+       
+        rideRepository.updateRides(pairs);
+    }
+   
 }
