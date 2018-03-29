@@ -50,13 +50,13 @@ public class RestControllerTest {
             
             Ride ride = new Ride();
            
-            ride.setName("Halfmoon Bay Ride");
-            ride.setDuration(38);
+            ride.setName("East Bay Ride");
+            ride.setDuration(58);
             
             ride = restTemplate.postForObject("http://localhost:8080/ride_tracker/ride", ride, Ride.class);
             
             System.out.println("Ride: " + ride);
-            
+          
         }
         
 }
