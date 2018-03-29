@@ -67,4 +67,21 @@ public class RestControllerTest {
             
             System.out.println("Ride name: " + ride.getName());
         }
+        
+        @Test
+        public void testUpdateRide() {
+            
+            RestTemplate restTemplate = new RestTemplate();
+            
+            Ride ride = restTemplate.getForObject("http://localhost:8080/ride_tracker/ride/12", Ride.class);
+            
+            ride.setDuration(ride.getDuration() + 1);
+            ride.setName("Palo Alto");
+            
+            restTemplate.put("http://localhost:8080/ride_tracker/ride", ride);
+            
+            System.out.println("Ride name: " + ride.getName());
+
+        }
+        
 }

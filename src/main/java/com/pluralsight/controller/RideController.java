@@ -23,13 +23,13 @@ public class RideController {
 	public @ResponseBody List<Ride> getRides() {
 		return rideService.getRides();
 	}
-	
+/*	
         @RequestMapping(value = "/ride", method = RequestMethod.PUT)
         public @ResponseBody Ride createRide(@RequestBody Ride ride) {
             
             return rideService.createRide(ride);
         }
-        
+*/        
         @RequestMapping(value = "/ride", method = RequestMethod.POST)
         public @ResponseBody Ride modifyRide(@RequestBody Ride ride) {
             
@@ -40,5 +40,11 @@ public class RideController {
         public @ResponseBody Ride getRide(@PathVariable(value = "id") Integer id) {
             return rideService.getRide(id);
         }
+        
+        @RequestMapping(value = "/ride", method = RequestMethod.PUT)
+        public @ResponseBody Ride updateRide(@RequestBody Ride ride) {
+            return rideService.updateRide(ride);
+        }
+        
         
 }

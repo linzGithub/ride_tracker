@@ -13,4 +13,6 @@ public interface RideService {
     Ride modifyRide(Ride ride);
 
     Ride getRide(Integer id);
+
+    Ride updateRide(Ride ride);
 }
