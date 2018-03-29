@@ -28,6 +28,10 @@ public class RideServiceImpl implements RideService {
     public Ride modifyRide(Ride ride) {
         return rideRepository.modifyRide(ride);
     }
-        
+     
+    @Override
+    public Ride getRide(Integer id) {
+        return rideRepository.getRide(id);
+    }
         
 }

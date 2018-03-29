@@ -8,8 +8,10 @@ public interface RideRepository {
 
     List<Ride> getRides();
 
-    public Ride createRide(Ride ride);
+    Ride createRide(Ride ride);
 
-    public Ride modifyRide(Ride ride);
+    Ride modifyRide(Ride ride);
+    
+    Ride getRide(Integer id);
 
 }

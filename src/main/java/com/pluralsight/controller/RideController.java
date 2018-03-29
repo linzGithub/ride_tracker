@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.pluralsight.model.Ride;
 import com.pluralsight.service.RideService;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @Controller
@@ -34,4 +35,10 @@ public class RideController {
             
             return rideService.modifyRide(ride);
         }
+        
+        @RequestMapping(value = "/ride/{id}", method = RequestMethod.GET)
+        public @ResponseBody Ride getRide(@PathVariable(value = "id") Integer id) {
+            return rideService.getRide(id);
+        }
+        
 }
